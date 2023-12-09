@@ -34,19 +34,17 @@ class Pixels:
         self.last_direction = None
 
     def set_pattern(self, pattern_name):
-        if pattern_name == None:
+        if pattern_name == None or pattern_name not in self.patterns:
             pattern_name = 'google'
+            print('using fallback pattern "{}"'.format(pattern_name))
 
-        if pattern_name in self.patterns:
-            pattern = self.patterns.get(pattern_name)
-            self.pattern = pattern(show=self.show)
-            return True
-        else:
-            return False
+        pattern = self.patterns.get(pattern_name)
+        self.pattern = pattern(show=self.show)
 
     def set_num_pixels(self, num_pixels):
         if num_pixels == None:
             num_pixels = 12
+            print('using fallback pixel amount of {}'.format(num_pixels)
 
         if self.controller is not None:
             self.controller.cleanup()
