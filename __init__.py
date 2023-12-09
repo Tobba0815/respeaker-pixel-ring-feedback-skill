@@ -56,7 +56,7 @@ class ReSpeakerPixelFeedback(MycroftSkill):
         self.pixels.wakeup()
 
     def handle_processing(self, message):
-        if ignore_processing is True:
+        if self.ignore_processing is True:
             pass
 
         self.pixels.think()
