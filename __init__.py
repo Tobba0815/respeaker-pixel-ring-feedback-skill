@@ -63,7 +63,7 @@ class ReSpeakerPixelFeedback(MycroftSkill):
     def pixel_info_handler(self, message):
         info = {
             'pattern': self.pixel_pattern,
-            'num_pixels': self.num_pixels,
+            'num_pixels': self.device_num_pixels,
             'device': self.device_type
         }
         self.speak_dialog('pixel.info', info)
@@ -95,22 +95,22 @@ class ReSpeakerPixelFeedback(MycroftSkill):
                 if kind == 'wakeup':
                     self.pixels.wakeup()
                     time.sleep(3)
-                    self.pixels.stop()
+                    self.pixels.off()
 
                 elif kind == 'listen':
                     self.pixels.listen()
                     time.sleep(3)
-                    self.pixels.stop()
+                    self.pixels.off()
 
                 elif kind == 'think' or kind == 'process':
                     self.pixels.think()
                     time.sleep(3)
-                    self.pixels.stop()
+                    self.pixels.off()
 
                 elif kind == 'speak' or kind == 'output':
                     self.pixels.speak()
                     time.sleep(3)
-                    self.pixels.stop()
+                    self.pixels.off()
 
                 else:
                     self.speak_dialog('pixel.show.fail', {'kind': kind})
