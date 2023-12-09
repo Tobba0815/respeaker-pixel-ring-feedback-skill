@@ -59,6 +59,15 @@ class ReSpeakerPixelFeedback(MycroftSkill):
     def handle_stop(self, message):
         self.pixels.off()
 
+    @intent_file_handler('pixel.info.intent')
+    def pixel_info_handler(self, message):
+        info = {
+            'pattern': self.pixel_pattern,
+            'num_pixels': self.num_pixels,
+            'device': self.device_type
+        }
+        self.speak_dialog('pixel.info', info)
+
     @intent_file_handler('pixel.get.pattern.intent')
     def handle_pixel_get_pattern(self, message):
         self.speak_dialog('pixel.get.pattern', {'pattern': self.pixel_pattern})
