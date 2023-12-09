@@ -1,2 +1,2 @@
-Pixel zeige {kind}
-Zeige pixel {kind}
+zeige ( Pixel | pixel ) {kind}
+zeige ( Pixel | pixel ) {kind}

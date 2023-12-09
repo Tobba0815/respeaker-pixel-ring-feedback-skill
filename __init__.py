@@ -10,15 +10,14 @@ class ReSpeakerPixelFeedback(MycroftSkill):
         MycroftSkill.__init__(self)
 
     def initialize(self):
-        self.add_events()
         self.use_settings()
-
         self.pixels = Pixels(pattern=self.pixel_pattern, num_pixels=self.device_num_pixels)
+        self.add_events()
 
     def use_settings(self):
-        self.device_type = self.settings.get('device_type')
-        self.device_num_pixels = self.settings.get('device_num_pixels')
-        self.pixel_pattern = self.settings.get('pixel_pattern')
+        self.device_type = self.settings.get('device_type', 'option_4mic')
+        self.device_num_pixels = self.settings.get('device_num_pixels', 12)
+        self.pixel_pattern = self.settings.get('pixel_pattern', 'google')
 
     def on_settings_changed(self):
         self.use_settings()
@@ -64,7 +63,7 @@ class ReSpeakerPixelFeedback(MycroftSkill):
         info = {
             'pattern': self.pixel_pattern,
             'num_pixels': self.device_num_pixels,
-            'device': self.device_type
+            'device': self.translate_namedvalues('device')[self.device_type]
         }
         self.speak_dialog('pixel.info', info)
 

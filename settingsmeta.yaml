@@ -6,7 +6,7 @@ skillMetadata:
         - name: device_type
           label: Device used
           type: select
-          options: "4Mic Array|option_4mic"
+          options: "4-Mic Array|option_4mic"
           value: option_4mic
         - name: device_num_pixels
           type: number

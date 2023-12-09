@@ -1,2 +1,2 @@
-set pixel pattern
-pixel set pattern
+set ( pixel pattern | pixelpattern ) ( to | ) {pattern}
+use ( pixel pattern | pixelpattern ) {pattern}
