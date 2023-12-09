@@ -14,8 +14,9 @@ class ReSpeakerPixelFeedback(MycroftSkill):
 
     def initialize(self):
         self.use_settings()
-        self.set_pixel_pattern()
         self.add_events()
+        self.pixels = Pixels(pattern=self.pixel_pattern, num_pixels=self.device_num_pixels)
+        self.set_pixel_pattern()
 
     def use_settings(self):
         self.device_type = self.settings.get('device_type', 'option_4mic')
@@ -26,7 +27,7 @@ class ReSpeakerPixelFeedback(MycroftSkill):
         self.use_settings()
 
     def set_pixel_pattern(self):
-        self.pixels = Pixels(pattern=self.pixel_pattern, num_pixels=self.device_num_pixels)
+        self.pixels.set_pixel_pattern(self.pixel_pattern)
 
     def add_events(self):
         # add events for basic recognition
