@@ -17,5 +17,5 @@ skillMetadata:
         - name: pixel_pattern
           type: select
           label: Select Feedback Pattern
-          options: "Alexa|option_alexa;Google Home|option_google"
+          options: "Alexa|alexa;Google Home|google"
           value: option_google
