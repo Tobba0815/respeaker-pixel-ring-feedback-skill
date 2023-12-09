@@ -11,7 +11,7 @@ class ReSpeakerPixelFeedback(MycroftSkill):
         self.add_events()
         self.use_settings()
 
-        self.pixels = Pixels(self.pixel_pattern, self.device_num_pixels)
+        self.pixels = Pixels(pattern=self.pixel_pattern, num_pixels=self.device_num_pixels)
 
     def use_settings(self):
         self.device_type = self.settings.get('device_type')

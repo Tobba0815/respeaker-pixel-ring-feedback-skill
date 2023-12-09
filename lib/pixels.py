@@ -17,7 +17,7 @@ class Pixels:
         'google': GoogleHomeLedPattern,
         'alexa': AlexaLedPattern
     }
-    def __init__(self, pattern="google", num_pixels=12):
+    def __init__(self, pattern, num_pixels):
 
         self.set_num_pixels(num_pixels)
         if self.set_pattern(pattern) == False:
@@ -34,6 +34,9 @@ class Pixels:
         self.last_direction = None
 
     def set_pattern(self, pattern_name):
+        if pattern_name == None:
+            pattern_name = 'google'
+
         if pattern_name in self.patterns:
             pattern = self.patterns.get(pattern_name)
             self.pattern = pattern(show=self.show)
@@ -42,6 +45,9 @@ class Pixels:
             return False
 
     def set_num_pixels(self, num_pixels):
+        if num_pixels == None:
+            num_pixels = 12
+
         if self.controller is not None:
             self.controller.cleanup()
 
