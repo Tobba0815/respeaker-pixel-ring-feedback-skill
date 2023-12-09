@@ -1,3 +1,5 @@
+import time
+
 from mycroft import MycroftSkill, intent_file_handler
 from mycroft_bus_client import MessageBusClient, Message
 
