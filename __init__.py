@@ -59,7 +59,7 @@ class ReSpeakerPixelFeedback(MycroftSkill):
 
     @intent_file_handler('pixel.get.pattern.intent')
     def handle_pixel_get_pattern(self, message):
-        self.speak_dialog('pixel.get.pattern', {pattern: self.pixel_pattern})
+        self.speak_dialog('pixel.get.pattern', {'pattern': self.pixel_pattern})
         pass
 
     @intent_file_handler('pixel.set.pattern.intent')
@@ -69,9 +69,9 @@ class ReSpeakerPixelFeedback(MycroftSkill):
             # check patterns
             if pattern in ['alexa', 'google']:
                 self.pixel_pattern = pattern
-                self.speak_dialog('pixel.set.pattern', {pattern: self.pixel_pattern})
+                self.speak_dialog('pixel.set.pattern', {'pattern': self.pixel_pattern})
             else:
-                self.speak_dialog('pixel.set.pattern.fail', {pattern: pattern})
+                self.speak_dialog('pixel.set.pattern.fail', {'pattern': pattern})
         else:
             self.speak.dialog('pixel.set.pattern.fail.unknown')
 
@@ -82,29 +82,29 @@ class ReSpeakerPixelFeedback(MycroftSkill):
             # todo: translate kind
             if kind in ['wakeup', 'listen', 'think', 'process', 'speak']:
                 if kind == 'wakeup':
-                    self.pixel.wakeup()
+                    self.pixels.wakeup()
                     time.sleep(3)
-                    self.pixel.stop()
+                    self.pixels.stop()
 
                 elif kind == 'listen':
-                    self.pixel.listen()
+                    self.pixels.listen()
                     time.sleep(3)
-                    self.pixel.stop()
+                    self.pixels.stop()
 
                 elif kind == 'think' or kind == 'process':
-                    self.pixel.think()
+                    self.pixels.think()
                     time.sleep(3)
-                    self.pixel.stop()
+                    self.pixels.stop()
 
                 elif kind == 'speak' or kind == 'output':
-                    self.pixel.speak()
+                    self.pixels.speak()
                     time.sleep(3)
-                    self.pixel.stop()
+                    self.pixels.stop()
 
                 else:
-                    self.speak_dialog('pixel.show.fail', {kind: kind})
+                    self.speak_dialog('pixel.show.fail', {'kind': kind})
             else:
-                self.speak_dialog('pixel.show.fail', {kind: kind})
+                self.speak_dialog('pixel.show.fail', {'kind': kind})
         else:
             self.speak_dialog('pixel.show.fail.unknown')
 
