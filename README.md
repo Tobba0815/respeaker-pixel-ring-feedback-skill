@@ -1,35 +1,35 @@
-# <img src="https://raw.githack.com/FortAwesome/Font-Awesome/master/svgs/solid/spinner.svg" card_color="#E18A05" width="50" height="50" style="vertical-align:bottom"/> Respeaker Pixel Ring Feedback
-Skill to control pixel ring of respeaker
+# <img src="https://raw.githack.com/FortAwesome/Font-Awesome/master/svgs/solid/spinner.svg" card_color="#E18A05" width="50" height="50" style="vertical-align:bottom"/> ReSpeaker Pixel Feedback
+Skill to control pixels of ReSpeaker 4-Mic Array
 
 ## About
-Skill to control pixel ring od respeaker 4-mic-array.
+Skill to control the Pixels of ReSpeaker 4-mic-array.
 
-set different patterns
+Set different patterns like Alexa oder GoogleHome
 
-light leds
+This Skill utilizes the message bus and will light the LEDs on matching events:
+  
+* Wakeup
+* Listening
+* Processing
+* Speaking
+
 
 ## Examples
-* "Pixel listen"
-* "Pixel think"
-* "Pixel process"
-* "Pixel set pattern"
-* "Pixel get pattern"
-* "Get pixel pattern"
-* "Set pixel pattern"
-* "Pixel warn"
-* "Pixel error"
-* "Pixel success"
-* "Pixel info"
+* "show pixel listen"
+* "show pixel think"
+* "show pixel process"
+* "set pixel pattern to Google"
+* "set pixel pattern to Alexa"
+* "get pixel pattern"
+* "get pixel info"
 
 ## Credits
 Tobba
 
 ## Category
 **IoT**
-Information
 
 ## Tags
-#Respeaker
-#Led
-#Feedback
-
+#ReSpeaker
+#LED
+#VisualFeedback
