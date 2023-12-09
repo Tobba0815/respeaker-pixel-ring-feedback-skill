@@ -44,7 +44,7 @@ class Pixels:
     def set_num_pixels(self, num_pixels):
         if num_pixels == None:
             num_pixels = 12
-            print('using fallback pixel amount of {}'.format(num_pixels)
+            print('using fallback pixel amount of {}'.format(num_pixels))
 
         if self.controller is not None:
             self.controller.cleanup()
