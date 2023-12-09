@@ -14,7 +14,7 @@ class ReSpeakerPixelFeedback(MycroftSkill):
 
     def initialize(self):
         self.use_settings()
-        self.set_pixel_pattern(self.pixel_pattern)
+        self.set_pixel_pattern()
         self.add_events()
 
     def use_settings(self):
