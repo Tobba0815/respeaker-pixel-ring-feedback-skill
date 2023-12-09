@@ -6,12 +6,15 @@ from mycroft_bus_client import MessageBusClient, Message
 from .lib.pixels import Pixels
 
 class ReSpeakerPixelFeedback(MycroftSkill):
+
+    ignore_processing = False
+
     def __init__(self):
         MycroftSkill.__init__(self)
 
     def initialize(self):
         self.use_settings()
-        self.pixels = Pixels(pattern=self.pixel_pattern, num_pixels=self.device_num_pixels)
+        self.set_pixel_pattern(self.pixel_pattern)
         self.add_events()
 
     def use_settings(self):
@@ -21,6 +24,9 @@ class ReSpeakerPixelFeedback(MycroftSkill):
 
     def on_settings_changed(self):
         self.use_settings()
+
+    def set_pixel_pattern(self):
+        self.pixels = Pixels(pattern=self.pixel_pattern, num_pixels=self.device_num_pixels)
 
     def add_events(self):
         # add events for basic recognition
@@ -50,6 +56,9 @@ class ReSpeakerPixelFeedback(MycroftSkill):
         self.pixels.wakeup()
 
     def handle_processing(self, message):
+        if ignore_processing is True:
+            pass
+
         self.pixels.think()
 
     def handle_output(self, message):
@@ -79,6 +88,7 @@ class ReSpeakerPixelFeedback(MycroftSkill):
             # check patterns
             if pattern in ['alexa', 'google']:
                 self.pixel_pattern = pattern
+                self.set_pixel_pattern()
                 self.speak_dialog('pixel.set.pattern', {'pattern': self.pixel_pattern})
             else:
                 self.speak_dialog('pixel.set.pattern.fail', {'pattern': pattern})
@@ -91,6 +101,7 @@ class ReSpeakerPixelFeedback(MycroftSkill):
         if kind is not None:
             # todo: translate kind
             if kind in ['wakeup', 'listen', 'think', 'process', 'speak']:
+                self.ignore_processing = True
                 if kind == 'wakeup':
                     self.pixels.wakeup()
                     time.sleep(3)
@@ -113,6 +124,9 @@ class ReSpeakerPixelFeedback(MycroftSkill):
 
                 else:
                     self.speak_dialog('pixel.show.fail', {'kind': kind})
+
+                self.ignore_processing = True
+
             else:
                 self.speak_dialog('pixel.show.fail', {'kind': kind})
         else:
@@ -120,7 +134,7 @@ class ReSpeakerPixelFeedback(MycroftSkill):
 
     @intent_file_handler('pixel.stop.intent')
     def pixel_stop_handler(self, message):
-        self.handle_stop()
+        self.pixels.off()
 
 def create_skill():
     return ReSpeakerPixelFeedback()
