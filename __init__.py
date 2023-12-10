@@ -57,10 +57,8 @@ class ReSpeakerPixelFeedback(MycroftSkill):
         self.pixels.wakeup()
 
     def handle_processing(self, message):
-        if self.ignore_processing is True:
-            pass
-
-        self.pixels.think()
+        if self.ignore_processing is False:
+            self.pixels.think()
 
     def handle_output(self, message):
         self.pixels.speak()
@@ -80,7 +78,6 @@ class ReSpeakerPixelFeedback(MycroftSkill):
     @intent_file_handler('pixel.get.pattern.intent')
     def handle_pixel_get_pattern(self, message):
         self.speak_dialog('pixel.get.pattern', {'pattern': self.pixel_pattern})
-        pass
 
     @intent_file_handler('pixel.set.pattern.intent')
     def handle_pixel_set_pattern(self, message):
@@ -94,7 +91,7 @@ class ReSpeakerPixelFeedback(MycroftSkill):
             else:
                 self.speak_dialog('pixel.set.pattern.fail', {'pattern': pattern})
         else:
-            self.speak.dialog('pixel.set.pattern.fail.unknown')
+            self.speak_dialog('pixel.set.pattern.fail.unknown')
 
     @intent_file_handler('pixel.show.intent')
     def handle_pixel_show(self, message):
